@@ -9,12 +9,8 @@ public class GameBoard {
 	Fruit fruit = new Fruit("F");
 	Empty empty = new Empty(" ");
 	Snake snake = new Snake("S");
-	int posColSnake;
-	int posLineSnake;
 	int posCol;
 	int posLine;
-	int posColFood;
-	int posLineFood;
 	int nbCol;
 	int nbLine;
 	Random random = new Random();
@@ -105,9 +101,9 @@ public class GameBoard {
 			throw new NoSnakeGeneratedException("No Snake Generated Exception");
 		}
 
-		// Generation les pos_col pos_line n-fois pour nous nous tombons sur un block empty
+		// Generation les posCol et posLine n-fois pour pour trouver un block empty
 		while (playGround[posCol][posLine] != empty) {
-			generatePositionsAleat(this.nbCol, this.nbLine);
+			generatePositionsAleat(nbCol, nbLine);
 		}
 		if (playGround[posCol][posLine].equals(empty)) {
 			playGround[posCol][posLine] = snake;
@@ -135,7 +131,7 @@ public class GameBoard {
 
 	private void generatePositionsAleat(int nbCol, int nbLine) {
 		// Generation position pour le snake et fruit
-		posCol = random.nextInt(nbCol - 1);
-		posLine = random.nextInt(nbLine - 1);
+		posCol = (int) (Math.random() * (playGround.length - 1));
+		posLine = (int) (Math.random() * (playGround[0].length - 1));
 	}
 }
