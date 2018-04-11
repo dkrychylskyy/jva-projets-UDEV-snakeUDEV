@@ -50,14 +50,6 @@ public class GameBoard {
 		}
 	}
 
-	//	// Creation fruit
-	//	public void setFruit(Fruit fruit) {
-	//		Block[][] pg = this.getPlayGround();
-	//		if (pg[1][1] == null) {
-	//			pg[1][1] = fruit;
-	//		}
-	//	}
-
 	public Block[][] getPlayGround() {
 		return playGround;
 	}
@@ -83,7 +75,6 @@ public class GameBoard {
 		} else {
 			throw new IllegalArgumentException();
 		}
-
 	}
 
 	public void generateSnake() throws NoSnakeGeneratedException {
@@ -102,8 +93,8 @@ public class GameBoard {
 		}
 	}
 
+	// Generation position pour le snake et fruit
 	private void generatePositionsAleat(int nbCol, int nbLine) {
-		// Generation position pour le snake et fruit
 		pos_col = random.nextInt(nbCol - 1);
 		pos_line = random.nextInt(nbLine - 1);
 	}
