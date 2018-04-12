@@ -13,7 +13,17 @@ public class GameBoard {
 	int posLine;
 	int nbCol;
 	int nbLine;
+	int startPosSnakeX;
+	int startPosSnakeY;
 	Random random = new Random();
+
+	public int getStartPosSnakeX() {
+		return startPosSnakeX;
+	}
+
+	public int getStartPosSnakeY() {
+		return startPosSnakeY;
+	}
 
 	public int getNbCol() {
 		return nbCol;
@@ -139,7 +149,9 @@ public class GameBoard {
 	}
 
 	public void addSnake(int i, int j) {
-		if (playGround[i][j].equals(empty)) {
+		startPosSnakeY = i;
+		startPosSnakeX = j;
+		if (playGround[i][j].equals(empty) || playGround[i][j].equals(fruit)) {
 			playGround[i][j] = snake;
 		}
 	}
@@ -148,6 +160,5 @@ public class GameBoard {
 		if (playGround[i][j].equals(empty)) {
 			playGround[i][j] = fruit;
 		}
-
 	}
 }

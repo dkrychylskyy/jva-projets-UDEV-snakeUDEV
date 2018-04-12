@@ -82,19 +82,100 @@ public class GameMotor {
 		return false;
 	}
 
-	public int move(Direction right) {
+	public int move(Direction direction) {
 		Block[][] pg = gb.getPlayGround();
+		int posSnakeX = gb.getStartPosSnakeX();
+		int posSnakeY = gb.getStartPosSnakeY();
+
 		switch (direction) {
 		case RIGHT:
-			if (pg[2][2 + 2].getSymbol() != " ") {
-				return -1;
-			} else if (pg[2][2 + 1].getSymbol() == " ") {
-				return 0;
+			if (canMove(direction)) {
+				if (pg[posSnakeY][posSnakeX + 1].getSymbol() == " ") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeX += 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 0;
+				}else if (pg[posSnakeY][posSnakeX + 1].getSymbol() == "F") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeX += 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 1;
+				} else {
+					return -1;
+				}
 			}
 			break;
+		case LEFT:
+			if (canMove(direction)) {
+				if (pg[posSnakeY][posSnakeX - 1].getSymbol() == " ") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeX -= 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 0;
+				}else if (pg[posSnakeY][posSnakeX + 1].getSymbol() == "F") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeX -= 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+				} else {
+					return -1;
+				}
+			}
+			break;
+		case DOWN:
+			if (canMove(direction)) {
+				if (pg[posSnakeY + 1][posSnakeX].getSymbol() == " ") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeY += 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 0;
+				}else if (pg[posSnakeY + 1][posSnakeX].getSymbol() == "F") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeY += 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 1;
+				} else {
+					return -1;
+				}
+			}
+		case UP:
+			if (canMove(direction)) {
+				if (pg[posSnakeY - 1][posSnakeX].getSymbol() == " ") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeY -= 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 0;
+				}else if (pg[posSnakeY - 1][posSnakeX].getSymbol() == "F") {
+					pg[posSnakeY][posSnakeX] = gb.empty;
+					posSnakeY -= 1;
+					gb.addSnake(posSnakeY, posSnakeX);
+					changeDirection(direction);
+					System.out.println(gb.toString());
+					return 1;
+				} else {
+					return -1;
+				}
+			}
 		default:
 			break;
 		}
 		return 0;
+	}
+
+	public void changeDirection(Direction direction) {
+		this.direction = direction;
 	}
 }
