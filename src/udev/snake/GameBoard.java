@@ -31,6 +31,7 @@ public class GameBoard {
 		this.nbLine = nbLine;
 	}
 
+	// Creation GameBoard
 	public GameBoard(int nbCol, int nbLine) {
 
 		setNbCol(nbCol);
@@ -97,6 +98,7 @@ public class GameBoard {
 	}
 
 	public void generateSnake() throws NoSnakeGeneratedException {
+
 		if ((nbCol == 3 && nbLine == 3) && playGround[1][1].equals(fruit)) {
 			throw new NoSnakeGeneratedException("No Snake Generated Exception");
 		}
@@ -105,6 +107,7 @@ public class GameBoard {
 		while (playGround[posCol][posLine] != empty) {
 			generatePositionsAleat(nbCol, nbLine);
 		}
+
 		if (playGround[posCol][posLine].equals(empty)) {
 			playGround[posCol][posLine] = snake;
 		} else {
@@ -112,9 +115,9 @@ public class GameBoard {
 		}
 	}
 
+	// Generation les pos_col pos_line n-fois pour nous nous tombons sur un block empty
 	public void generateFood() throws NoFoodGeneratedException {
-
-		// Generation les pos_col pos_line n-fois pour nous nous tombons sur un block empty
+		// Si on a 3x3 il faut verifier si la place est disponible
 		if ((nbCol == 3 && nbLine == 3) && playGround[1][1].equals(snake)) {
 			throw new NoFoodGeneratedException("No Food Generated Exception");
 		}
@@ -133,5 +136,18 @@ public class GameBoard {
 		// Generation position pour le snake et fruit
 		posCol = (int) (Math.random() * (playGround.length - 1));
 		posLine = (int) (Math.random() * (playGround[0].length - 1));
+	}
+
+	public void addSnake(int i, int j) {
+		if (playGround[i][j].equals(empty)) {
+			playGround[i][j] = snake;
+		}
+	}
+
+	public void addFood(int i, int j) {
+		if (playGround[i][j].equals(empty)) {
+			playGround[i][j] = fruit;
+		}
+
 	}
 }
