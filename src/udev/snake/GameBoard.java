@@ -101,6 +101,7 @@ public class GameBoard {
 	static GameBoard createGameBoard(int nbCol, int nbLine) throws IllegalArgumentException{
 		if (nbCol >= 3 && nbLine >=3) {
 			GameBoard gb = new GameBoard(nbCol, nbLine);
+			System.out.println(gb.toString());
 			return gb;
 		} else {
 			throw new IllegalArgumentException();
@@ -120,6 +121,7 @@ public class GameBoard {
 
 		if (playGround[posCol][posLine].equals(empty)) {
 			playGround[posCol][posLine] = snake;
+			System.out.println(this.toString());
 		} else {
 			throw new NoSnakeGeneratedException("No Snake Generated Exception");
 		}
@@ -137,6 +139,7 @@ public class GameBoard {
 		}
 		if (playGround[posCol][posLine].equals(empty)) {
 			playGround[posCol][posLine] = fruit;
+			System.out.println(this.toString());
 		} else {
 			throw new NoFoodGeneratedException("No Food Generated Exception");
 		}

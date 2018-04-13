@@ -9,9 +9,6 @@ public class GameMotor {
 	public Direction right = Direction.RIGHT;
 	public Empty empty;
 
-	public Block testSymbol = new TestSymbol("T");
-
-
 	public GameMotor(GameBoard gb, Direction direction) {
 		super();
 		this.setGb(gb);
@@ -175,6 +172,7 @@ public class GameMotor {
 		return 0;
 	}
 
+	// On chanche la direction en cas de succes
 	public void changeDirection(Direction direction) {
 		this.direction = direction;
 	}
